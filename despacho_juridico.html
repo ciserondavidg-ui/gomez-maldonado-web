@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporativo Jurídico Gómez Maldonado</title>
+    
+    <!-- Google Fonts: Cinzel for legal elegance, Montserrat for modern readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            light: '#FDE047',
+                            main: '#D4AF37', 
+                            dark: '#B8860B', 
+                            muted: '#9c7b16',
+                        },
+                        marble: {
+                            900: '#050505',
+                            800: '#0a0a0a',
+                            700: '#141414',
+                        }
+                    },
+                    backgroundImage: {
+                        'metallic-gold': 'linear-gradient(to right, #B8860B, #D4AF37, #FDE047, #D4AF37, #B8860B)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Base styling matching the dark marble aesthetic */
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            /* Subtle marble lighting simulation */
+            background-image: 
+                radial-gradient(circle at 20% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #B8860B; }
+
+        /* Typography Effects */
+        .text-gold-metallic {
+            background: linear-gradient(to bottom right, #fcefa1 0%, #D4AF37 40%, #B8860B 80%, #7a5800 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 4px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Border & Shadow Effects */
+        .gold-shadow {
+            box-shadow: 0 4px 30px -5px rgba(212, 175, 55, 0.2);
+        }
+        
+        .gold-shadow-hover:hover {
+            box-shadow: 0 10px 40px -5px rgba(212, 175, 55, 0.35);
+        }
+
+        .border-gradient-gold {
+            position: relative;
+        }
+        .border-gradient-gold::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom right, #D4AF37, #B8860B, transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <header class="fixed w-full top-0 z-50 bg-marble-900/90 backdrop-blur-md border-b border-gold-dark/30 shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 md:h-24">
+                
+                <!-- Navbar Logo using the provided image -->
+                <a href="#inicio" class="flex items-center space-x-3 group">
+                    <div class="h-12 w-16 md:h-14 md:w-20 overflow-hidden rounded-sm border border-gold-main/40 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                        <img src="image_c24fb6.jpg" alt="Logo Gómez Maldonado" class="h-full w-full object-cover object-center group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="font-serif text-lg md:text-xl font-bold tracking-widest text-gold-metallic leading-none">Gómez Maldonado</span>
+                        <span class="font-sans text-[0.55rem] md:text-[0.65rem] tracking-[0.2em] text-gray-400 uppercase mt-1">Corporativo Jurídico</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-10 items-center">
+                    <a href="#inicio" class="text-gray-300 hover:text-gold-main transition-colors duration-300 text-xs font-semibold uppercase tracking-[0.2em]">Inicio</a>
+                    <a href="#fundadores" class="text-gray-300 hover:text-gold-main transition-colors duration-300 text-xs font-semibold uppercase tracking-[0.2em]">La Firma</a>
+                    <a href="#areas" class="text-gray-300 hover:text-gold-main transition-colors duration-300 text-xs font-semibold uppercase tracking-[0.2em]">Práctica</a>
+                    <a href="#contacto" class="px-5 py-2 border border-gold-main text-gold-main hover:bg-gold-main hover:text-black transition-all duration-300 text-xs font-bold uppercase tracking-[0.2em] rounded-sm">Contacto</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gold-main focus:outline-none p-2 hover:bg-white/5 rounded-full transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-marble-800 border-b border-gold-dark/40 shadow-2xl absolute w-full left-0">
+            <div class="px-6 py-8 space-y-6 flex flex-col items-center">
+                <a href="#inicio" class="text-gray-300 hover:text-gold-main text-sm font-sans tracking-[0.2em] uppercase w-full text-center pb-4 border-b border-white/5">Inicio</a>
+                <a href="#fundadores" class="text-gray-300 hover:text-gold-main text-sm font-sans tracking-[0.2em] uppercase w-full text-center pb-4 border-b border-white/5">La Firma</a>
+                <a href="#areas" class="text-gray-300 hover:text-gold-main text-sm font-sans tracking-[0.2em] uppercase w-full text-center pb-4 border-b border-white/5">Áreas de Práctica</a>
+                <a href="#contacto" class="text-gold-main text-sm font-sans font-bold tracking-[0.2em] uppercase w-full text-center pt-2">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20 md:pt-24">
+        <section id="inicio" class="relative min-h-[92vh] flex items-center py-16 px-4 overflow-hidden">
+            <!-- Background ambient glow based on the image's spot lights -->
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-yellow-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-yellow-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
+                
+                <!-- Left: Hero Text -->
+                <div class="text-center lg:text-left order-2 lg:order-1 flex flex-col items-center lg:items-start">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="h-[1px] w-8 md:w-12 bg-gold-main"></div>
+                        <span class="uppercase tracking-[0.4em] text-gold-main text-[0.65rem] md:text-xs font-semibold">Prestigio & Excelencia</span>
+                        <div class="h-[1px] w-8 md:w-12 bg-gold-main lg:hidden"></div>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6">
+                        <span class="block text-white mb-2">Estrategia Legal</span>
+                        <span class="block text-gold-metallic">Impecable.</span>
+                    </h1>
+                    
+                    <p class="font-sans text-gray-300 text-sm md:text-base lg:text-lg max-w-lg mb-10 leading-relaxed font-light">
+                        Defendemos sus intereses con el máximo rigor jurídico. Un despacho fundado sobre la solidez moral y el conocimiento profundo de la ley.
+                    </p>
+                    
+                    <a href="#contacto" class="group relative px-8 py-4 bg-transparent overflow-hidden inline-flex items-center justify-center border border-gold-main text-gold-main hover:text-black transition-colors duration-300 font-sans tracking-[0.2em] text-xs md:text-sm font-semibold uppercase rounded-sm">
+                        <span class="absolute inset-0 bg-metallic-gold w-0 group-hover:w-full transition-all duration-500 ease-out z-0"></span>
+                        <span class="relative z-10 flex items-center">
+                            Solicitar Asesoría <i class="fas fa-chevron-right ml-3 text-[0.7rem]"></i>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Right: Hero Image (image_c24fb6.jpg) -->
+                <div class="order-1 lg:order-2 flex justify-center w-full relative">
+                    <div class="relative w-full max-w-[600px] aspect-[4/3] lg:aspect-auto lg:h-[550px] rounded-sm p-2 bg-gradient-to-br from-gold-dark/40 to-black/80 gold-shadow">
+                        <div class="w-full h-full relative overflow-hidden rounded-sm bg-marble-900 border border-gold-main/20">
+                            <!-- Subtle overlay to blend the image into the dark marble theme slightly better -->
+                            <div class="absolute inset-0 bg-black/10 z-10 pointer-events-none mix-blend-multiply"></div>
+                            <img src="image_c24fb6.jpg" alt="Corporativo Jurídico Gómez Maldonado" class="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-[1.5s] ease-in-out">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+                <a href="#fundadores" class="text-gold-main/40 hover:text-gold-main transition-colors">
+                    <i class="fas fa-arrow-down text-lg"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="fundadores" class="py-24 bg-marble-800 border-y border-gold-dark/10 relative overflow-hidden">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold-dark/5 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+                <div class="text-center mb-16">
+                    <i class="fas fa-gavel text-3xl text-gold-dark mb-4 opacity-70"></i>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-white tracking-wide">Socios Fundadores</h2>
+                    <div class="h-[2px] w-24 bg-gradient-to-r from-transparent via-gold-main to-transparent mx-auto mt-6"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 max-w-4xl mx-auto">
+                    <!-- Marco -->
+                    <div class="border-gradient-gold bg-marble-900 p-10 text-center flex flex-col items-center group hover:-translate-y-2 transition-transform duration-500">
+                        <div class="w-16 h-16 rounded-full border border-gold-main/30 flex items-center justify-center mb-6 bg-marble-800 group-hover:bg-gold-main/10 transition-colors">
+                            <i class="fas fa-user-tie text-2xl text-gold-main"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif text-gold-metallic mb-1">Marco David</h3>
+                        <h4 class="text-xl font-serif text-white tracking-widest uppercase mb-4">Gómez Esparza</h4>
+                        <div class="h-[1px] w-12 bg-gold-dark/50 mb-5"></div>
+                        <p class="text-gray-400 font-sans text-sm font-light uppercase tracking-[0.15em]">Socio Fundador</p>
+                    </div>
+                    
+                    <!-- Grecia -->
+                    <div class="border-gradient-gold bg-marble-900 p-10 text-center flex flex-col items-center group hover:-translate-y-2 transition-transform duration-500">
+                        <div class="w-16 h-16 rounded-full border border-gold-main/30 flex items-center justify-center mb-6 bg-marble-800 group-hover:bg-gold-main/10 transition-colors">
+                            <i class="fas fa-user-graduate text-2xl text-gold-main"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif text-gold-metallic mb-1">Grecia Alejandra</h3>
+                        <h4 class="text-xl font-serif text-white tracking-widest uppercase mb-4">Maldonado Arenas</h4>
+                        <div class="h-[1px] w-12 bg-gold-dark/50 mb-5"></div>
+                        <p class="text-gray-400 font-sans text-sm font-light uppercase tracking-[0.15em]">Socia Fundadora</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="areas" class="py-24 relative bg-marble-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col items-center text-center mb-20">
+                    <span class="text-gold-main font-sans tracking-[0.3em] uppercase text-[0.65rem] mb-4 block font-semibold border border-gold-main/30 py-1 px-4 rounded-full">Experiencia Legal</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Áreas de Práctica</h2>
+                    <p class="text-gray-400 font-sans font-light max-w-2xl text-sm md:text-base">Brindamos representación especializada y resoluciones estratégicas enfocadas en la protección íntegra de nuestros clientes.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                    
+                    <!-- Civil y Mercantil -->
+                    <div class="group flex flex-col bg-marble-800 rounded-sm overflow-hidden border-gradient-gold gold-shadow-hover transition-all duration-500 cursor-pointer">
+                        <div class="h-64 sm:h-[350px] w-full overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-marble-900 via-transparent to-transparent z-10"></div>
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 z-10 pointer-events-none"></div>
+                            <img src="image_b85e18.jpg" alt="Derecho Civil y Mercantil" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out">
+                            <!-- Icon overlay -->
+                            <div class="absolute top-6 right-6 z-20 w-12 h-12 bg-marble-900/80 backdrop-blur-sm border border-gold-main/40 rounded-full flex items-center justify-center">
+                                <i class="fas fa-file-signature text-gold-main"></i>
+                            </div>
+                        </div>
+                        <div class="p-8 md:p-10 flex flex-col flex-grow items-start bg-marble-900 relative z-20 -mt-10 mx-6 mb-6 border border-gold-dark/20 rounded-sm group-hover:border-gold-main/50 transition-colors">
+                            <h3 class="text-2xl md:text-3xl font-serif font-bold text-gold-metallic mb-4">Derecho Civil y Mercantil</h3>
+                            <p class="text-gray-300 font-sans font-light leading-relaxed mb-8 text-sm md:text-base">
+                                Soluciones integrales para controversias contractuales, litigios comerciales, cobro de pagarés, títulos de crédito y protección del patrimonio empresarial e individual.
+                            </p>
+                            <span class="mt-auto text-gold-main font-sans uppercase tracking-[0.2em] text-xs font-semibold group-hover:text-white transition-colors flex items-center">
+                                Conocer Más <i class="fas fa-arrow-right ml-2 text-[0.7rem] transform group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Penal -->
+                    <div class="group flex flex-col bg-marble-800 rounded-sm overflow-hidden border-gradient-gold gold-shadow-hover transition-all duration-500 cursor-pointer">
+                        <div class="h-64 sm:h-[350px] w-full overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-marble-900 via-transparent to-transparent z-10"></div>
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 z-10 pointer-events-none"></div>
+                            <img src="image_b85e4f.jpg" alt="Derecho Penal" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out">
+                            <!-- Icon overlay -->
+                            <div class="absolute top-6 right-6 z-20 w-12 h-12 bg-marble-900/80 backdrop-blur-sm border border-gold-main/40 rounded-full flex items-center justify-center">
+                                <i class="fas fa-balance-scale-right text-gold-main"></i>
+                            </div>
+                        </div>
+                        <div class="p-8 md:p-10 flex flex-col flex-grow items-start bg-marble-900 relative z-20 -mt-10 mx-6 mb-6 border border-gold-dark/20 rounded-sm group-hover:border-gold-main/50 transition-colors">
+                            <h3 class="text-2xl md:text-3xl font-serif font-bold text-gold-metallic mb-4">Derecho Penal</h3>
+                            <p class="text-gray-300 font-sans font-light leading-relaxed mb-8 text-sm md:text-base">
+                                Defensa penal estratégica y contundente dentro del Sistema Penal Acusatorio. Salvaguardamos sus derechos fundamentales con estricta confidencialidad y ética profesional.
+                            </p>
+                            <span class="mt-auto text-gold-main font-sans uppercase tracking-[0.2em] text-xs font-semibold group-hover:text-white transition-colors flex items-center">
+                                Conocer Más <i class="fas fa-arrow-right ml-2 text-[0.7rem] transform group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contacto" class="bg-black relative pt-24 pb-12 overflow-hidden">
+        <!-- Top border glow -->
+        <div class="absolute top-0 left-0 w-full h-[1px] bg-metallic-gold opacity-60"></div>
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/2 h-[1px] bg-white opacity-50 shadow-[0_0_20px_#D4AF37]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-5 flex flex-col">
+                    <div class="mb-6 flex flex-col">
+                        <span class="font-serif text-3xl font-bold tracking-widest text-gold-metallic">Gómez Maldonado</span>
+                        <span class="font-sans text-xs tracking-[0.3em] text-gray-400 uppercase mt-2">Corporativo Jurídico</span>
+                    </div>
+                    <p class="text-gray-400 font-sans text-sm font-light leading-relaxed max-w-sm mb-8">
+                        La confianza se gana con resultados. Representación legal de alto nivel para asuntos críticos, patrimoniales y penales.
+                    </p>
+                    <!-- Location removed as requested -->
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden md:block md:col-span-2"></div>
+
+                <!-- Contact Numbers -->
+                <div class="md:col-span-5 flex flex-col md:items-end text-left md:text-right">
+                    <h4 class="text-white font-sans text-xs tracking-[0.3em] uppercase mb-8 border-b border-gold-dark/30 pb-2 inline-block">Comuníquese con Nosotros</h4>
+                    
+                    <div class="space-y-5 flex flex-col md:items-end w-full">
+                        <a href="tel:2225441117" class="flex items-center justify-start md:justify-end text-gray-300 hover:text-white transition-colors group w-full">
+                            <div class="bg-marble-900 border border-gold-dark/30 p-3 rounded-sm group-hover:border-gold-main/80 transition-colors flex items-center md:flex-row-reverse w-full max-w-xs justify-between md:justify-start gap-4">
+                                <i class="fas fa-phone-alt text-gold-main"></i>
+                                <span class="font-sans text-lg tracking-[0.15em]">222 544 1117</span>
+                            </div>
+                        </a>
+                        
+                        <a href="tel:2221747159" class="flex items-center justify-start md:justify-end text-gray-300 hover:text-white transition-colors group w-full">
+                            <div class="bg-marble-900 border border-gold-dark/30 p-3 rounded-sm group-hover:border-gold-main/80 transition-colors flex items-center md:flex-row-reverse w-full max-w-xs justify-between md:justify-start gap-4">
+                                <i class="fas fa-phone-alt text-gold-main"></i>
+                                <span class="font-sans text-lg tracking-[0.15em]">222 174 7159</span>
+                            </div>
+                        </a>
+
+                        <a href="tel:2285726931" class="flex items-center justify-start md:justify-end text-gray-300 hover:text-white transition-colors group w-full">
+                            <div class="bg-marble-900 border border-gold-dark/30 p-3 rounded-sm group-hover:border-gold-main/80 transition-colors flex items-center md:flex-row-reverse w-full max-w-xs justify-between md:justify-start gap-4">
+                                <i class="fas fa-phone-alt text-gold-main"></i>
+                                <span class="font-sans text-lg tracking-[0.15em]">228 572 6931</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 font-sans text-[0.65rem] tracking-widest uppercase mb-4 md:mb-0">
+                    &copy; 2026 Corporativo Jurídico Gómez Maldonado. Todos los derechos reservados.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gold-main transition-transform hover:-translate-y-1"><i class="fab fa-whatsapp text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-gold-main transition-transform hover:-translate-y-1"><i class="fas fa-envelope text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            // Mobile Menu Toggle
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                const icon = btn.querySelector('i');
+                if(menu.classList.contains('hidden')){
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+
+            // Smooth Scrolling and closing menu on mobile
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if(!menu.classList.contains('hidden')) {
+                        menu.classList.add('hidden');
+                        const icon = btn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+
+                    // Scroll to target
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
